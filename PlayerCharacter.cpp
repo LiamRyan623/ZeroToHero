@@ -39,6 +39,10 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerCharacter	::MoveRight);
 
+	PlayerInputComponent->BindAxis("TurnCamera", this, &APlayerCharacter::TurnCamera);
+	PlayerInputComponent->BindAxis("LookUp", this, &APlayerCharacter::LookUp);
+
+
 }
 
 void APlayerCharacter::MoveForward(float InputValue) {
@@ -52,5 +56,17 @@ void APlayerCharacter::MoveRight(float InputValue) {
 
 	FVector RightDirection = GetActorRightVector();
 	AddMovementInput(RightDirection, InputValue);
+
+}
+
+void APlayerCharacter::TurnCamera(float InputValue) {
+
+	AddControllerYawInput(InputValue);
+
+}
+
+void APlayerCharacter::LookUp(float InputValue) {
+
+	AddControllerPitchInput(InputValue); 
 
 }
