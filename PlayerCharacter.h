@@ -36,5 +36,18 @@ protected:
 
 	void TurnCamera(float InputValue);
 	void LookUp(float InputValue);
+	
+
+	//Attack
+
+	int Damage;
+
+	void StartAttack();
+
+	void LineTrace();
+
+public:
+
+	bool vIsAttacking;
 };
 

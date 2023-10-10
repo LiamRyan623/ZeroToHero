@@ -42,6 +42,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis("TurnCamera", this, &APlayerCharacter::TurnCamera);
 	PlayerInputComponent->BindAxis("LookUp", this, &APlayerCharacter::LookUp);
 
+	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &APlayerCharacter::StartAttack);
+
 
 }
 
@@ -67,6 +69,18 @@ void APlayerCharacter::TurnCamera(float InputValue) {
 
 void APlayerCharacter::LookUp(float InputValue) {
 
-	AddControllerPitchInput(InputValue); 
+	AddControllerPitchInput(InputValue);  
+
+}
+
+void APlayerCharacter::StartAttack() {
+
+	//Call attack animation
+
+}
+
+void APlayerCharacter::LineTrace() {
+
+	// Deal damage to enemies in range
 
 }
