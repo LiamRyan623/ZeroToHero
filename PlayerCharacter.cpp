@@ -3,6 +3,7 @@
 
 #include "PlayerCharacter.h"
 #include "Camera/CameraComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -13,6 +14,9 @@ APlayerCharacter::APlayerCharacter()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("PlayerCamera"));
 	Camera->SetupAttachment(RootComponent);
 	Camera->bUsePawnControlRotation = true;
+
+	SwordMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sword Mesh"));
+	SwordMesh->SetupAttachment(GetMesh(), FName("SwordSocket"));
 
 }
 
@@ -76,6 +80,9 @@ void APlayerCharacter::LookUp(float InputValue) {
 void APlayerCharacter::StartAttack() {
 
 	//Call attack animation
+	if (AttackAnimation) {
+		GetMesh()->PlayAnimation(AttackAnimation, false);
+	 }
 
 }
 

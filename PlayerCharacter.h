@@ -31,6 +31,12 @@ protected:
 	UPROPERTY(EditAnywhere)
 	class UCameraComponent* Camera; 
 
+	UPROPERTY(VisibleAnywhere)
+	class UStaticMeshComponent* SwordMesh;
+
+	UPROPERTY(EditAnywhere)
+	class UAnimSequence* AttackAnimation;
+
 	void MoveForward(float InputValue);
 	void MoveRight(float InputValue);
 
