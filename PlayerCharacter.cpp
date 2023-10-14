@@ -80,8 +80,9 @@ void APlayerCharacter::LookUp(float InputValue) {
 void APlayerCharacter::StartAttack() {
 
 	//Call attack animation
-	if (AttackAnimation) {
+	if (AttackAnimation && !bIsAttacking) {
 		GetMesh()->PlayAnimation(AttackAnimation, false);
+		bIsAttacking = true;
 	 }
 
 }
@@ -90,4 +91,20 @@ void APlayerCharacter::LineTrace() {
 
 	// Deal damage to enemies in range
 
+	// Get socket location
+	FVector StartLocation = GetMesh()->GetSocketLocation(FName("Start"));
+	FVector EndLocation = GetMesh()->GetSocketLocation(FName("End"));
+
+	// Setup linetrace
+	FHitResult HitResult;
+	FCollisionQueryParams TraceParams;
+	TraceParams.AddIgnoredActor(this);
+
+	// Linetrace
+	GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECC_Visibility, TraceParams);
+
+	if (HitResult.bBlockingHit) {
+		AActor* ActorHit = HitResult.GetActor();
+		ActorHit->Destroy();
+	}
 }

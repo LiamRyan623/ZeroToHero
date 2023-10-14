@@ -50,10 +50,16 @@ protected:
 
 	void StartAttack();
 
-	void LineTrace();
+	
 
 public:
 
-	bool vIsAttacking;
+	UFUNCTION(BlueprintCallable)
+
+	void LineTrace();
+	
+	UPROPERTY(BlueprintReadWrite)
+
+	bool bIsAttacking;
 };
 
