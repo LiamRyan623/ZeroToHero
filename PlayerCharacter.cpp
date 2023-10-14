@@ -92,8 +92,8 @@ void APlayerCharacter::LineTrace() {
 	// Deal damage to enemies in range
 
 	// Get socket location
-	FVector StartLocation = GetMesh()->GetSocketLocation(FName("Start"));
-	FVector EndLocation = GetMesh()->GetSocketLocation(FName("End"));
+	FVector StartLocation = SwordMesh->GetSocketLocation(FName("Start"));
+	FVector EndLocation = SwordMesh->GetSocketLocation(FName("End"));
 
 	// Setup linetrace
 	FHitResult HitResult;
